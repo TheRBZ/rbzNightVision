@@ -11,14 +11,13 @@ import org.bukkit.potion.PotionEffectType;
 import static org.bukkit.Bukkit.getPlayer;
 
 public class Main extends JavaPlugin {
-    //final FileConfiguration config = getConfig();
 
     @Override
     public void onEnable() {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
-        getLogger().info("Enabled rbzNightVision v" + getDescription().getVersion() + " by therbz");
 
+        // Set up bStats metrics
         int bStatsPluginId = 9704;
         MetricsLite metrics = new MetricsLite(this, bStatsPluginId);
 
@@ -29,6 +28,9 @@ public class Main extends JavaPlugin {
         if(CURRENT_CONFIG_VERSION > config_version) {
             getLogger().info(ChatColor.RED + "Your config.yml is outdated! Delete it (or rename it) and restart your server to update it!");
         }
+
+        // If all is good so far, send an enabled message
+        getLogger().info("Enabled rbzNightVision v" + getDescription().getVersion() + " by therbz");
     }
 
     @Override
