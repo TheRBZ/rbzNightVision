@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="rbzNightVision:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/rbzNightVision_jar</output-path>
+    <root id="archive" name="rbzNightVision.jar">
+      <element id="module-output" name="rbzNightVision" />
+    </root>
+  </artifact>
+</component>

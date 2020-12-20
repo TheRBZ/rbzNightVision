@@ -1,0 +1,28 @@
+#########################################
+#                                       #
+#    rbzNightVision v1.3.1 by therbz    #
+#                                       #
+#########################################
+
+# The number of ticks the nightvision effect will last
+# 1 second = 20 ticks
+# 1 day = 1728000 ticks
+nvticks: 1728000
+
+# Messages
+messages:
+  reload: "&6&lNV &8\u00BB &aSuccessfully reloaded &frbzNightVision"
+  nvenable: "&6&lNV &8\u00BB &aToggled nightvision &fon"
+  nvdisable: "&6&lNV &8\u00BB &cToggled nightvision &foff"
+  no-permission: "&c&lNV &8\u00BB &4You do not have permission to execute this command!"
+  not-player: "&cYou must be a player to execute this command!"
+
+  # Placeholder %target% can be used for nvenable-sender and nvdisable-sender
+  other-player:
+    unknown-target: "&c&lNV &8\u00BB &4Could not find that player!"
+    no-permission: "&c&lNV &8\u00BB &4You do not have permission to use this on other players!"
+    nvenable-sender: "&6&lNV &8\u00BB &aToggled nightvision &fon &afor &f%target%"
+    nvdisable-sender: "&6&lNV &8\u00BB &cToggled nightvision &foff &cfor &f%target%"
+
+# DO NOT EDIT THIS
+config-version: 1
