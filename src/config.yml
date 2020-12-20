@@ -17,6 +17,7 @@ messages:
   no-permission: "&c&lNV &8\u00BB &4You do not have permission to execute this command!"
   not-player: "&cYou must be a player to execute this command!"
 
+  # Messages related to /nv <other player>
   # Placeholder %target% can be used for nvenable-sender and nvdisable-sender
   other-player:
     unknown-target: "&c&lNV &8\u00BB &4Could not find that player!"
