@@ -22,8 +22,6 @@ public class Main extends JavaPlugin {
         int bStatsPluginId = 9704;
         MetricsLite metrics = new MetricsLite(this, bStatsPluginId);
 
-        System.out.println(metrics.isEnabled());
-
         // Check that the config is up-to-date
         final int CURRENT_CONFIG_VERSION = 1; // Update this as necessary
         int config_version = getConfig().getInt("config-version");
