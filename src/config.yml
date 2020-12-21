@@ -1,6 +1,6 @@
 #########################################
 #                                       #
-#    rbzNightVision v1.3.1 by therbz    #
+#     rbzNightVision v1.4  by therbz    #
 #                                       #
 #########################################
 
@@ -28,4 +28,4 @@ messages:
     nvdisable-sender: "&6&lNV &8\u00BB &cToggled nightvision &foff &cfor &f%target%"
 
 # DO NOT EDIT THIS
-config-version: 1
+config-version: 2
