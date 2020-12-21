@@ -7,7 +7,7 @@ main: me.therbz.rbznightvision.Main
 commands:
   nightvision:
     description: Toggle night vision on or off for you or a specified player
-    usage: /nv [player]
+    usage: /<command> [player]
     aliases: [nv, nvision, nightv]
   rbznvreload:
     description: Reloads rbzNightVision's configuration

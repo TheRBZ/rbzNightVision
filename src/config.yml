@@ -16,6 +16,7 @@ messages:
   nvenable: "&6&lNV &8\u00BB &aToggled nightvision &fon"
   nvdisable: "&6&lNV &8\u00BB &cToggled nightvision &foff"
   no-permission: "&c&lNV &8\u00BB &4You do not have permission to execute this command!"
+  incorrect-usage: "&c&lNV &8\u00BB &4Incorrect arguments! Correct usage: &c%usage%"
   not-player: "&cYou must be a player to execute this command!"
 
   # Messages related to /nv <other player>

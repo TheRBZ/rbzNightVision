@@ -110,6 +110,10 @@ public class Main extends JavaPlugin {
                 target.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.nvenable")));
                 return true;
             }
+
+            // User didn't give 0 or 1 arguments, so give them a incorrect usage message
+            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.incorrect-usage").replace("%usage%", cmd.getUsage())));
+            return true;
         }
 
         return false;
