@@ -18,14 +18,14 @@ public class Main extends JavaPlugin {
         saveDefaultConfig();
 
         // Set up bStats metrics
-        int bStatsPluginId = 9704;
-        MetricsLite metrics = new MetricsLite(this, bStatsPluginId);
+        final int BSTATS_PLUGIN_ID = 9704;
+        MetricsLite metrics = new MetricsLite(this, BSTATS_PLUGIN_ID);
 
         // Check that the config is up-to-date
         final int CURRENT_CONFIG_VERSION = 1; // Update this as necessary
         int config_version = getConfig().getInt("config-version");
 
-        if(CURRENT_CONFIG_VERSION > config_version) {
+        if(config_version < CURRENT_CONFIG_VERSION) {
             getLogger().info(ChatColor.RED + "Your config.yml is outdated! Delete it (or rename it) and restart your server to update it!");
         }
 
