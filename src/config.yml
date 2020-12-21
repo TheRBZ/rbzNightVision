@@ -5,6 +5,7 @@
 #########################################
 
 # The number of ticks the nightvision effect will last
+# Maximum value: 2147483647 = 3 and a half years
 # 1 second = 20 ticks
 # 1 day = 1728000 ticks
 nvticks: 1728000
