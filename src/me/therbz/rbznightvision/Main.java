@@ -26,7 +26,7 @@ public class Main extends JavaPlugin {
         int config_version = getConfig().getInt("config-version");
 
         if(config_version < CURRENT_CONFIG_VERSION) {
-            getLogger().info(ChatColor.RED + "Your config.yml is outdated! Delete it (or rename it) and restart your server to update it!");
+            getLogger().warning("Your config.yml is outdated! Delete it (or rename it) and restart your server to update it!");
         }
 
         // If all is good so far, send an enabled message
