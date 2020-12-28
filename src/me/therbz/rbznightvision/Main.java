@@ -14,6 +14,7 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // Get configuration, and save the default if there is no file
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
