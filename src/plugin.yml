@@ -22,3 +22,6 @@ permissions:
   rbznv.reload:
     description: Allows use of /rbznvreload to reload the plugin
     default: op
+  rbznv.cooldown.bypass:
+    description: Bypass the command cooldown
+    default: op
