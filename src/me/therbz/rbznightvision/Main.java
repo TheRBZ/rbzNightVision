@@ -73,13 +73,11 @@ public class Main extends JavaPlugin {
                 }
 
                 // Check for cooldown
-                getLogger().info(String.valueOf(sender.hasPermission("rbznv.cooldown.bypass")));
                 long cooldownTime = getConfig().getLong("cooldown");
                 if (cooldownTime>0 && cooldowns.containsKey(p.getUniqueId()) && !sender.hasPermission("rbznv.cooldown.bypass")) {
-                    getLogger().info("e");
                     long timeSinceCommandInMillis = System.currentTimeMillis() - cooldowns.get(p.getUniqueId());
                     if(timeSinceCommandInMillis < cooldownTime * 1000) {
-                        String timeRemaning = String.valueOf(cooldownTime-timeSinceCommandInMillis*0.001);
+                        String timeRemaning = String.valueOf(Math.round(cooldownTime-timeSinceCommandInMillis*0.001));
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.cooldown").replace("%seconds%", timeRemaning)));
                         return true;
                     }
