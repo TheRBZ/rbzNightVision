@@ -8,9 +8,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 import static org.bukkit.Bukkit.getPlayer;
 
 public class Main extends JavaPlugin {
+    HashMap<UUID, Long> cooldowns = new HashMap<UUID, Long>();
 
     @Override
     public void onEnable() {
@@ -23,7 +27,7 @@ public class Main extends JavaPlugin {
         MetricsLite metrics = new MetricsLite(this, BSTATS_PLUGIN_ID);
 
         // Check that the config is up-to-date
-        final int CURRENT_CONFIG_VERSION = 2; // Update this as necessary
+        final int CURRENT_CONFIG_VERSION = 3; // Update this as necessary
         int config_version = getConfig().getInt("config-version");
 
         if(config_version < CURRENT_CONFIG_VERSION) {
@@ -60,6 +64,7 @@ public class Main extends JavaPlugin {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.not-player")));
                     return true;
                 }
+                Player p = (Player) sender;
 
                 // Check that the sender has permissions for self
                 if (!sender.hasPermission("rbznv.use")) {
@@ -67,16 +72,30 @@ public class Main extends JavaPlugin {
                     return true;
                 }
 
+                // Check for cooldown
+                getLogger().info(String.valueOf(sender.hasPermission("rbznv.cooldown.bypass")));
+                long cooldownTime = getConfig().getLong("cooldown");
+                if (cooldownTime>0 && cooldowns.containsKey(p.getUniqueId()) && !sender.hasPermission("rbznv.cooldown.bypass")) {
+                    getLogger().info("e");
+                    long timeSinceCommandInMillis = System.currentTimeMillis() - cooldowns.get(p.getUniqueId());
+                    if(timeSinceCommandInMillis < cooldownTime * 1000) {
+                        String timeRemaning = String.valueOf(cooldownTime-timeSinceCommandInMillis*0.001);
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.cooldown").replace("%seconds%", timeRemaning)));
+                        return true;
+                    }
+                }
+
                 // If has NV, disable NV for player
-                Player p = (Player) sender;
                 if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
                     p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+                    cooldowns.put(p.getUniqueId(), System.currentTimeMillis());
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.nvdisable")));
                     return true;
                 }
 
                 // If does not have NV, enable NV for player
                 p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, getConfig().getInt("nvticks"), 0));
+                cooldowns.put(p.getUniqueId(), System.currentTimeMillis());
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("messages.nvenable")));
                 return true;
             }

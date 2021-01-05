@@ -1,6 +1,6 @@
 #########################################
 #                                       #
-#    rbzNightVision v1.4.1 by therbz    #
+#    rbzNightVision v1.5.0 by therbz    #
 #                                       #
 #########################################
 
@@ -10,6 +10,11 @@
 # 1 day = 1728000 ticks
 nvticks: 1728000
 
+# Cooldown (in seconds) between using /nv
+# This can be bypassed using rbznv.cooldown.bypass
+# Set to 0 to disable
+cooldown: 0
+
 # Messages
 messages:
   reload: "&6&lNV &8\u00BB &aSuccessfully reloaded &frbzNightVision"
@@ -18,6 +23,7 @@ messages:
   no-permission: "&c&lNV &8\u00BB &4You do not have permission to execute this command!"
   incorrect-usage: "&c&lNV &8\u00BB &4Incorrect arguments! Correct usage: &c%usage%"
   not-player: "&cYou must be a player to execute this command!"
+  cooldown: "&c&lNV &8\u00BB &4You cannot use this command for &c%seconds% &4seconds!"
 
   # Messages related to /nv <other player>
   # Placeholder %target% can be used for nvenable-sender and nvdisable-sender
@@ -27,5 +33,5 @@ messages:
     nvenable-sender: "&6&lNV &8\u00BB &aToggled nightvision &fon &afor &f%target%"
     nvdisable-sender: "&6&lNV &8\u00BB &cToggled nightvision &foff &cfor &f%target%"
 
-# DO NOT EDIT THIS
-config-version: 2
+# DO NOT TOUCH
+config-version: 3
