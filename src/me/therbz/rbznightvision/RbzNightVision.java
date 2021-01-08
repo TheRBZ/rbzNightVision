@@ -13,7 +13,7 @@ import java.util.UUID;
 
 import static org.bukkit.Bukkit.getPlayer;
 
-public class Main extends JavaPlugin {
+public class RbzNightVision extends JavaPlugin {
     HashMap<UUID, Long> cooldowns = new HashMap<UUID, Long>();
 
     @Override
