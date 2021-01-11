@@ -1,9 +1,11 @@
 package me.therbz.rbznightvision;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.Command;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -21,6 +23,9 @@ public class RbzNightVision extends JavaPlugin {
         // Get configuration, and save the default if there is no file
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
+
+        // Register event listeners
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
 
         // Set up bStats metrics
         final int BSTATS_PLUGIN_ID = 9704;
