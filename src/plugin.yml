@@ -3,7 +3,7 @@ author: therbz
 version: 1.6.0
 description: Allows users to toggle nightvision on/off
 api-version: 1.13
-main: me.therbz.rbznightvision.Main
+main: me.therbz.rbznightvision.RbzNightVision
 commands:
   nightvision:
     description: Toggle night vision on or off for you or a specified player
