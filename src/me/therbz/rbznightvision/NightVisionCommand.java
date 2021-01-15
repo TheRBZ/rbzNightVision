@@ -12,7 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 import static org.bukkit.Bukkit.getPlayer;
 
 public class NightVisionCommand implements CommandExecutor {
-    private final JavaPlugin plugin = RbzNightVision.getPlugin(RbzNightVision.class);
+    private final JavaPlugin plugin = NightVision.getPlugin(NightVision.class);
     
     @Override
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
@@ -50,8 +50,8 @@ public class NightVisionCommand implements CommandExecutor {
 
                 // Check for cooldown
                 long cooldownTime = plugin.getConfig().getLong("cooldown");
-                if (cooldownTime>0 && RbzNightVision.playerHasCooldown(p.getUniqueId()) && !sender.hasPermission("rbznv.cooldown.bypass")) {
-                    long timeSinceCommandInMillis = System.currentTimeMillis() - RbzNightVision.playerGetCooldown(p.getUniqueId());
+                if (cooldownTime>0 && NightVision.playerHasCooldown(p.getUniqueId()) && !sender.hasPermission("rbznv.cooldown.bypass")) {
+                    long timeSinceCommandInMillis = System.currentTimeMillis() - NightVision.playerGetCooldown(p.getUniqueId());
                     if(timeSinceCommandInMillis < cooldownTime * 1000) {
                         String timeRemaning = String.valueOf(Math.round(cooldownTime-timeSinceCommandInMillis*0.001));
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.cooldown").replace("%seconds%", timeRemaning)));
@@ -62,14 +62,14 @@ public class NightVisionCommand implements CommandExecutor {
                 // If has NV, disable NV for player
                 if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
                     p.removePotionEffect(PotionEffectType.NIGHT_VISION);
-                    RbzNightVision.playerSetCooldown(p.getUniqueId(), System.currentTimeMillis());
+                    NightVision.playerSetCooldown(p.getUniqueId(), System.currentTimeMillis());
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.nvdisable")));
                     return true;
                 }
 
                 // If does not have NV, enable NV for player
                 p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, plugin.getConfig().getInt("nvticks"), 0));
-                RbzNightVision.playerSetCooldown(p.getUniqueId(), System.currentTimeMillis());
+                NightVision.playerSetCooldown(p.getUniqueId(), System.currentTimeMillis());
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.nvenable")));
                 return true;
             }

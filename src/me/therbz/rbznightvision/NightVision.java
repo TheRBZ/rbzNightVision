@@ -6,8 +6,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class RbzNightVision extends JavaPlugin {
-    private static HashMap<UUID, Long> cooldowns = new HashMap<UUID, Long>();
+public class NightVision extends JavaPlugin {
+    private static HashMap<UUID, Long> cooldowns = new HashMap<>();
 
     @Override
     public void onEnable() {
