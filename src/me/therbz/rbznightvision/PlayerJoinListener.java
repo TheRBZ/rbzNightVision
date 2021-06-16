@@ -12,7 +12,11 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.Objects;
 
 public class PlayerJoinListener implements Listener {
-    private final JavaPlugin plugin = NightVision.getPlugin(NightVision.class);
+    private final NightVision plugin;
+
+    public PlayerJoinListener(NightVision plugin) {
+        this.plugin = plugin;
+    }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {

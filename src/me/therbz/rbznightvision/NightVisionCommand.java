@@ -12,7 +12,11 @@ import org.bukkit.potion.PotionEffectType;
 import static org.bukkit.Bukkit.getPlayer;
 
 public class NightVisionCommand implements CommandExecutor {
-    private final JavaPlugin plugin = NightVision.getPlugin(NightVision.class);
+    private final NightVision plugin;
+
+    public NightVisionCommand(NightVision plugin) {
+        this.plugin = plugin;
+    }
     
     @Override
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {

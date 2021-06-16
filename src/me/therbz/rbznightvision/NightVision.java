@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.UUID;
 
 public class NightVision extends JavaPlugin {
@@ -16,7 +17,10 @@ public class NightVision extends JavaPlugin {
         saveDefaultConfig();
 
         // Register event listeners
-        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+
+        // Register commands
+        Objects.requireNonNull(getCommand("nightvision")).setExecutor(new NightVisionCommand(this));
 
         // Set up bStats metrics
         final int BSTATS_PLUGIN_ID = 9704;
@@ -29,9 +33,6 @@ public class NightVision extends JavaPlugin {
         if(config_version < CURRENT_CONFIG_VERSION) {
             getLogger().warning("Your config.yml is outdated! Delete it (or rename it) and restart your server to update it!");
         }
-
-        // If all is good so far, send an enabled message
-        getLogger().info("Enabled rbzNightVision v" + getDescription().getVersion() + " by therbz");
     }
 
     public static boolean playerHasCooldown(UUID playerUUID) {
