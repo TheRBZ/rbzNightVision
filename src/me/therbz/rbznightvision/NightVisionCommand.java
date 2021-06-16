@@ -54,8 +54,8 @@ public class NightVisionCommand implements CommandExecutor {
 
                 // Check for cooldown
                 long cooldownTime = plugin.getConfig().getLong("cooldown");
-                if (cooldownTime>0 && NightVision.playerHasCooldown(p.getUniqueId()) && !sender.hasPermission("rbznv.cooldown.bypass")) {
-                    long timeSinceCommandInMillis = System.currentTimeMillis() - NightVision.playerGetCooldown(p.getUniqueId());
+                if (cooldownTime>0 && plugin.playerHasCooldown(p.getUniqueId()) && !sender.hasPermission("rbznv.cooldown.bypass")) {
+                    long timeSinceCommandInMillis = System.currentTimeMillis() - plugin.playerGetCooldown(p.getUniqueId());
                     if(timeSinceCommandInMillis < cooldownTime * 1000) {
                         String timeRemaning = String.valueOf(Math.round(cooldownTime-timeSinceCommandInMillis*0.001));
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.cooldown").replace("%seconds%", timeRemaning)));
@@ -66,14 +66,14 @@ public class NightVisionCommand implements CommandExecutor {
                 // If has NV, disable NV for player
                 if (p.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
                     p.removePotionEffect(PotionEffectType.NIGHT_VISION);
-                    NightVision.playerSetCooldown(p.getUniqueId(), System.currentTimeMillis());
+                    plugin.playerSetCooldown(p.getUniqueId(), System.currentTimeMillis());
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.nvdisable")));
                     return true;
                 }
 
                 // If does not have NV, enable NV for player
                 p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, plugin.getConfig().getInt("nvticks"), 0));
-                NightVision.playerSetCooldown(p.getUniqueId(), System.currentTimeMillis());
+                plugin.playerSetCooldown(p.getUniqueId(), System.currentTimeMillis());
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.nvenable")));
                 return true;
             }

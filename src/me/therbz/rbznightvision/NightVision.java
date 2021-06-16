@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class NightVision extends JavaPlugin {
-    private static HashMap<UUID, Long> cooldowns = new HashMap<>();
+    private HashMap<UUID, Long> cooldowns = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -35,13 +35,13 @@ public class NightVision extends JavaPlugin {
         }
     }
 
-    public static boolean playerHasCooldown(UUID playerUUID) {
+    public boolean playerHasCooldown(UUID playerUUID) {
         return cooldowns.containsKey(playerUUID);
     }
-    public static Long playerGetCooldown(UUID playerUUID) {
+    public Long playerGetCooldown(UUID playerUUID) {
         return cooldowns.get(playerUUID);
     }
-    public static void playerSetCooldown(UUID playerUUID, Long time) {
+    public void playerSetCooldown(UUID playerUUID, Long time) {
         cooldowns.put(playerUUID, time);
     }
 }
