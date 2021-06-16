@@ -1,6 +1,6 @@
 name: rbzNightVision
 author: therbz
-version: 1.6.0
+version: 1.6.1
 description: Allows users to toggle nightvision on/off
 api-version: 1.13
 main: me.therbz.rbznightvision.NightVision
