@@ -21,6 +21,7 @@ public class NightVision extends JavaPlugin {
 
         // Register commands
         Objects.requireNonNull(getCommand("nightvision")).setExecutor(new NightVisionCommand(this));
+        Objects.requireNonNull(getCommand("rbznvreload")).setExecutor(new ReloadCommand(this));
 
         // Set up bStats metrics
         final int BSTATS_PLUGIN_ID = 9704;

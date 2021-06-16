@@ -20,22 +20,6 @@ public class NightVisionCommand implements CommandExecutor {
     
     @Override
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
-
-        if(cmd.getName().equalsIgnoreCase("rbznvreload")) {
-
-            // Check that the sender has permission to reload
-            if (!sender.hasPermission("rbznv.reload")) {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no-permission")));
-                return true;
-            }
-
-            // Reload the config
-            plugin.reloadConfig();
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.reload")));
-            plugin.getLogger().info("Reloaded rbzNightVision v" + plugin.getDescription().getVersion() + " by therbz");
-            return true;
-        }
-
         if(cmd.getName().equalsIgnoreCase("nightvision")) {
             if (args.length == 0) {
 
