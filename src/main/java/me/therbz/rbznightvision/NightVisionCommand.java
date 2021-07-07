@@ -66,6 +66,28 @@ public class NightVisionCommand implements CommandExecutor {
 
             if (args.length == 1) {
 
+                if (args[0].equalsIgnoreCase("reload")) {
+                    // Check that the sender has permission to reload
+                    if (!sender.hasPermission("rbznv.reload")) {
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.no-permission")));
+                        return true;
+                    }
+
+                    // Reload the config
+                    plugin.reloadConfig();
+
+                    // Check that the config is up-to-date
+                    int config_version = plugin.getConfig().getInt("config-version");
+                    if(config_version < plugin.CURRENT_CONFIG_VERSION) {
+                        sender.sendMessage(ChatColor.RED + "Your config.yml is outdated! Delete it (or rename it) and restart your server to update it!");
+                    }
+
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.reload")));
+                    plugin.getLogger().info("Reloaded rbzNightVision.");
+
+                    return true;
+                }
+
                 // Check that the sender has permissions for nv on other players
                 if (!sender.hasPermission("rbznv.use.others")) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.other-player.no-permission")));

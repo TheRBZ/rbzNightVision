@@ -2,16 +2,13 @@ name: rbzNightVision
 author: therbz
 version: 1.6.2
 description: Allows users to toggle nightvision on/off
-api-version: 1.13
+api-version: 1.17
 main: me.therbz.rbznightvision.NightVision
 commands:
   nightvision:
-    description: Toggle night vision on or off for you or a specified player
-    usage: /nightvision [player]
+    description: Toggle night vision on or off for you or a specified player, or reload the plugin
+    usage: /nightvision [<Player> | reload]
     aliases: [nv, nvision, nightv]
-  rbznvreload:
-    description: Reloads rbzNightVision's configuration
-    usage: /rbznvreload
 permissions:
   rbznv.use:
     description: Allows use of /nv on self
@@ -20,7 +17,7 @@ permissions:
     description: Allows use of /nv on other players
     default: op
   rbznv.reload:
-    description: Allows use of /rbznvreload to reload the plugin
+    description: Allows use of /nv reload to reload the plugin
     default: op
   rbznv.cooldown.bypass:
     description: Bypass the command cooldown
