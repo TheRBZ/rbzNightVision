@@ -38,8 +38,10 @@ public class NightVisionCommand implements CommandExecutor {
 
                 // Check for cooldown
                 long cooldownTime = plugin.getConfig().getLong("cooldown");
+
                 if (cooldownTime>0 && plugin.playerHasCooldown(p.getUniqueId()) && !sender.hasPermission("rbznv.cooldown.bypass")) {
                     long timeSinceCommandInMillis = System.currentTimeMillis() - plugin.playerGetCooldown(p.getUniqueId());
+
                     if(timeSinceCommandInMillis < cooldownTime * 1000) {
                         String timeRemaning = String.valueOf(Math.round(cooldownTime-timeSinceCommandInMillis*0.001));
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.cooldown").replace("%seconds%", timeRemaning)));
@@ -64,19 +66,19 @@ public class NightVisionCommand implements CommandExecutor {
 
             if (args.length == 1) {
 
-                // Check that the sender has permissions for others
+                // Check that the sender has permissions for nv on other players
                 if (!sender.hasPermission("rbznv.use.others")) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.other-player.no-permission")));
                     return true;
                 }
 
+                final Player target = getPlayer(args[0]);
+
                 // Check that the target exists
-                if (getPlayer(args[0]) == null) {
+                if (target == null) {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.other-player.unknown-target")));
                     return true;
                 }
-                // If the target does exist, set it
-                final Player target = getPlayer(args[0]);
 
                 // If target has NV, disable NV for target
                 if (target.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
@@ -86,7 +88,7 @@ public class NightVisionCommand implements CommandExecutor {
                     return true;
                 }
 
-                // If target does not have NV, enable NV for target
+                // Target does not have NV, enable NV for target
                 target.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, plugin.getConfig().getInt("nvticks"), 0));
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.other-player.nvenable-sender").replace("%target%", target.getName())));
                 target.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("messages.nvenable")));
